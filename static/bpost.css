@@ -1,0 +1,172 @@
+html {    
+    background-color: #e9e9ea !important;
+    background-image: none !important;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    background: #fff;
+}
+
+a {
+    display: inline-block;
+    width: auto;
+    color: #DD1829 !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+a img {
+    float: left;
+    margin-top: 8px;
+}
+
+body {
+    background-color: #e9e9ea;
+    color: #5A5A5F !important;
+}
+
+.ping-button.normal.allow {
+    background-color: #DD1829;
+    padding-right: 24px;
+    padding-left: 24px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff !important;
+}
+
+.section-title {
+    color: #DD1829;
+    font-size: 16px !important;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 0px !important;
+    margin-bottom: 35px !important;
+}
+
+.ping-header {
+    color: #5A5A5F !important;
+    text-align: left !important;
+    padding: 0px 50px !important;
+    padding-top: 35px !important;
+    font-size: 35px !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-weight: normal !important;
+}
+
+hr {
+    border-top: 2px solid #DD1829;
+    width: 20px;
+    margin: 0px;
+    margin-top: 25px;
+}
+
+.ping-input-label {
+    font-family: 'Ubuntu', sans-serif !important;
+    text-transform: none !important;
+    font-size: 16px !important;
+    color: #5A5A5F !important; /* updated */
+    font-weight: lighter !important;
+}
+
+.ping-footer-container {
+    background-color: #e9e9ea;
+    color: #191C1D !important;
+}
+
+.ping-body-container {
+    margin-bottom: 0px !important;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=tel] {
+    color: #5A5A5F !important;
+    background-color: white !important;
+    border: 1px solid #5A5A5F !important; /* updated */
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
+    border-color: #5A5A5F !important; /* updated */
+    outline: 0;
+    box-shadow: none;
+}
+
+.ping-button.deny {
+    color: #4195B9 !important;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body .ping-signin .ping-body-container .ping-steps .step span,
+body .ping-password .ping-body-container .ping-steps .step span {
+    color: #DD1829 !important;
+    border: 1px solid #DD1829 !important;
+}
+
+body .ping-signin .ping-body-container .ping-steps .step label,
+body .ping-password .ping-body-container .ping-steps .step label {
+    color: #DD1829 !important;
+}
+
+body .ping-signin .ping-body-container .ping-steps .step.active span,
+body .ping-password .ping-body-container .ping-steps .step.active span {
+    color: #fff !important;
+    background-color: #DD1829 !important;
+}
+
+.ping-messages {
+    color: #DD1829;
+    font-size: 16px !important;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 0px !important;
+    margin-bottom: 35px !important;
+}
+
+.required:before {
+    background-color: #fff !important;
+}
+
+.selectorLang {
+    text-align: right;
+    height: 50px;
+    vertical-align: text-top !important;
+    margin-top: 5px !important;
+}
+
+.selectorLang a {
+    line-height: 1.0em !important;
+    margin-top: 1px !important;
+}
+
+.password-change {
+    display: inline-block !important;
+}
+
+.divider .password-change {
+    display: inline-block !important;
+}
+
+/* âœ… New: Checkbox label updates */
+input[type="checkbox"] + label,
+.ping-checkbox-container label {
+    color: #5A5A5F !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 16px !important;
+}
+
+@media (max-width: 400px), (max-device-width: 900px) {
+    .ping-header {
+        font-size: 32px !important;
+    }
+}
+
+.remember-username .ping-checkbox-container.stacked {
+    display: block !important;
+}
+
+
+
+
+

